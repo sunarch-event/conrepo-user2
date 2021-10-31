@@ -13,7 +13,7 @@ import com.performance.domain.entity.UserInfo;
 
 @Repository
 public class UserDao {
-    
+
     private JdbcTemplate jdbcTemplate;
     
     public UserDao(JdbcTemplate jdbcTemplate) {
