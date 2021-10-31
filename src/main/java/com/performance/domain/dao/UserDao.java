@@ -44,7 +44,7 @@ public class UserDao {
         sql = sql + "'" + entity.getHobby5() + "')";
         jdbcTemplate.execute(sql);
     }
-    
+/*
     public Long selectId(UserInfo entity) {
         String sql = "SELECT id ";
         sql = sql + "FROM user_info ";
@@ -55,6 +55,20 @@ public class UserDao {
         sql = sql + "AND first_name = " + "'" + entity.getFirstName() + "'";
         sql = sql + " ORDER BY id desc";
         sql = sql + " LIMIT 1";
+        return jdbcTemplate.queryForObject(sql, Long.class);
+    }
+*/
+
+    public Long selectId(UserInfo entity) {
+        String sql = "SELECT MAX(id) ";
+        sql = sql + "FROM user_info ";
+        // 一旦コメントアウト
+        //sql = sql + "WHERE last_name || first_name = " + "'" + entity.getLastName() + entity.getFirstName() + "'";
+        
+        sql = sql + "WHERE last_name = " + "'" + entity.getLastName() + "'";
+        sql = sql + "AND first_name = " + "'" + entity.getFirstName() + "'";
+        //sql = sql + " ORDER BY id desc";
+        //sql = sql + " LIMIT 1";
         return jdbcTemplate.queryForObject(sql, Long.class);
     }
 
