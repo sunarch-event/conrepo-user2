@@ -8,17 +8,12 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.performance.domain.entity.UserHobby;
 import com.performance.domain.entity.UserInfo;
 
 @Repository
 public class UserDao {
-
-    final static Logger log = LogManager.getLogger(UserDao.class);
-
+    
     private JdbcTemplate jdbcTemplate;
     
     public UserDao(JdbcTemplate jdbcTemplate) {
