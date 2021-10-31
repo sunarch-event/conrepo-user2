@@ -48,16 +48,23 @@ public class UserDao {
     public Long selectId(UserInfo entity) {
         String sql = "SELECT id ";
         sql = sql + "FROM user_info ";
-        sql = sql + "WHERE last_name || first_name = " + "'" + entity.getLastName() + entity.getFirstName() + "'";
+        // 一旦コメントアウト
+        //sql = sql + "WHERE last_name || first_name = " + "'" + entity.getLastName() + entity.getFirstName() + "'";
+        sql = sql + "WHERE last_name = " + "'" + entity.getLastName() + "'";
+        sql = sql + "AND first_name = " + "'" + entity.getFirstName() + "'";
         sql = sql + " ORDER BY id desc";
         sql = sql + " LIMIT 1";
+        log.info("実行SQL：" + sql);
         return jdbcTemplate.queryForObject(sql, Long.class);
     }
 
     public List<UserInfo> searchUserInfo() {
         String sql = "SELECT id, last_name, first_name, prefectures, city, blood_type ";
         sql = sql + "FROM user_info ";
-        sql = sql + "WHERE last_name || first_name <> " + "'試験太郎'";
+        // 一旦コメントアウト
+        //sql = sql + "WHERE last_name || first_name <> " + "'試験太郎'";
+        sql = sql + "WHERE last_name <> " + "'試験'";
+        sql = sql + "WHERE first_name <> " + "'太郎'";
         sql = sql + " ORDER BY id";
         RowMapper<UserInfo> mapper = new BeanPropertyRowMapper<UserInfo>(UserInfo.class);
         return jdbcTemplate.query(sql, mapper);
