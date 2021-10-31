@@ -42,7 +42,7 @@ public class UserDao {
         sql = sql + "'" + entity.getCity() + "', ";
         sql = sql + "'" + entity.getBloodType() + "') ";
         // 主キーを取得できるように修正
-        sql = sql + "RETURNING id)";
+        sql = sql + "RETURNING id";
         //jdbcTemplate.execute(sql);
         return jdbcTemplate.queryForObject(sql, Long.class);
     }
