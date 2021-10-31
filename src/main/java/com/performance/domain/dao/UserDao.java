@@ -19,7 +19,7 @@ public class UserDao {
     public UserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+/*
     @Transactional
     public void insertUserInfo (UserInfo entity) {
         String sql = "INSERT INTO user_info (last_name, first_name, prefectures, city, blood_type)";
@@ -31,7 +31,22 @@ public class UserDao {
         sql = sql + "'" + entity.getBloodType() + "')";
         jdbcTemplate.execute(sql);
     }
-    
+*/
+    @Transactional
+    public Long insertUserInfo (UserInfo entity) {
+        String sql = "INSERT INTO user_info (last_name, first_name, prefectures, city, blood_type)";
+        sql = sql + " VALUES (";
+        sql = sql + "'" + entity.getLastName() + "', ";
+        sql = sql + "'" + entity.getFirstName() + "', ";
+        sql = sql + "'" + entity.getPrefectures() + "', ";
+        sql = sql + "'" + entity.getCity() + "', ";
+        sql = sql + "'" + entity.getBloodType() + "') ";
+        // 主キーを取得できるように修正
+        sql = sql + "RETURNING id)";
+        //jdbcTemplate.execute(sql);
+        return jdbcTemplate.queryForObject(sql, Long.class);
+    }
+        
     @Transactional
     public void insertUserHobby (UserHobby entity) {
         String sql = "INSERT INTO user_hobby (id, hobby1, hobby2, hobby3, hobby4, hobby5)";
@@ -44,7 +59,7 @@ public class UserDao {
         sql = sql + "'" + entity.getHobby5() + "')";
         jdbcTemplate.execute(sql);
     }
-/*
+
     public Long selectId(UserInfo entity) {
         String sql = "SELECT id ";
         sql = sql + "FROM user_info ";
@@ -55,20 +70,6 @@ public class UserDao {
         sql = sql + "AND first_name = " + "'" + entity.getFirstName() + "'";
         sql = sql + " ORDER BY id desc";
         sql = sql + " LIMIT 1";
-        return jdbcTemplate.queryForObject(sql, Long.class);
-    }
-*/
-
-    public Long selectId(UserInfo entity) {
-        String sql = "SELECT MAX(id) ";
-        sql = sql + "FROM user_info ";
-        // 一旦コメントアウト
-        //sql = sql + "WHERE last_name || first_name = " + "'" + entity.getLastName() + entity.getFirstName() + "'";
-        
-        sql = sql + "WHERE last_name = " + "'" + entity.getLastName() + "'";
-        sql = sql + "AND first_name = " + "'" + entity.getFirstName() + "'";
-        //sql = sql + " ORDER BY id desc";
-        //sql = sql + " LIMIT 1";
         return jdbcTemplate.queryForObject(sql, Long.class);
     }
 
