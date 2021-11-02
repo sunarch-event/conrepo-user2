@@ -102,7 +102,7 @@ public class UserDao {
     }
 
     public UserMaster getTargetUserData() {
-        String sql = "SELECT info.id id, info.last_name last_name, info.first_name first_name, info.prefectures prefectures, info.city city, info.blood_type blood_type ";
+        String sql = "SELECT info.id id, info.last_name last_name, info.first_name first_name, info.prefectures prefectures, info.city city, info.blood_type blood_type, ";
         sql = sql + "hobby.hobby1 hobby1, hobby.hobby2 hobby2, hobby.hobby3 hobby3, hobby.hobby4 hobby4, hobby.hobby5 hobby5";
         sql = sql + "FROM user_info info, user_hobby hobby ";
         sql = sql + "WHERE info.id = hobby.id";
