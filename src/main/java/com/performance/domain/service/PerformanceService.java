@@ -172,8 +172,9 @@ public class PerformanceService {
         // 対象情報取得
         UserInfo targetUserInfo = userDao.getTargetUserInfo();
         UserHobby targetUserHobby = userDao.getTargetUserHobby(targetUserInfo);
-        UserMaster targetUserMaster = new UserMaster();
-        
+        //UserMaster targetUserMaster = new UserMaster();
+        UserMaster targetUserMaster = userDao.getTargetUserData();
+/*        
         targetUserMaster.setId(targetUserInfo.getId());
         targetUserMaster.setLastName(targetUserInfo.getLastName());
         targetUserMaster.setFirstName(targetUserInfo.getFirstName());
@@ -185,7 +186,7 @@ public class PerformanceService {
         targetUserMaster.setHobby3(targetUserHobby.getHobby3());
         targetUserMaster.setHobby4(targetUserHobby.getHobby4());
         targetUserMaster.setHobby5(targetUserHobby.getHobby5());
-        
+*/        
         // DBから検索する
         List<UserInfo> userInfoList = userDao.searchUserInfo();
         List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
