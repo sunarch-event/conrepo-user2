@@ -98,10 +98,10 @@ public class PerformanceService {
             while ((readLine = br.readLine()) != null) {
                 i++;
                 //データ内容をコンソールに表示する
-                //log.info("-------------------------------");
+                log.info("-------------------------------");
 
                 //データ件数を表示
-                //log.info("データ読み込み" + i + "件目");
+                log.info("データ読み込み" + i + "件目");
                 
                 csvFile.add(readLine);
             }
@@ -119,7 +119,7 @@ public class PerformanceService {
             for(String line : csvFile) {
                 //カンマで分割した内容を配列に格納する
                 String[] data = line.split(",", -1);
-                /*
+                
                 //データ内容をコンソールに表示する
                 log.info("-------------------------------");
                 //データ件数を表示
@@ -134,7 +134,7 @@ public class PerformanceService {
                 log.debug("趣味3:" + data[7]);
                 log.debug("趣味4:" + data[8]);
                 log.debug("趣味5:" + data[9]);
-                */
+                
                 UserInfo userInfo = new UserInfo();
                 UserHobby userHobby = new UserHobby();
 
@@ -154,7 +154,7 @@ public class PerformanceService {
                 if(matcher.find()) {
                     // 行数のインクリメント
                     i++;
-                    //log.info("データ書き込み" + i + "件目");
+                    log.info("データ書き込み" + i + "件目");
                     /*
                     userDao.insertUserInfo(userInfo);
                     Long id = userDao.selectId(userInfo);
