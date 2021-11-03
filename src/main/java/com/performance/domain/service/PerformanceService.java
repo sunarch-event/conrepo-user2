@@ -171,8 +171,8 @@ public class PerformanceService {
             log.info("csv read error", e);
         }
         // 対象情報取得
-        UserInfo targetUserInfo = userDao.getTargetUserInfo();
-        UserHobby targetUserHobby = userDao.getTargetUserHobby(targetUserInfo);
+        //UserInfo targetUserInfo = userDao.getTargetUserInfo();
+        //UserHobby targetUserHobby = userDao.getTargetUserHobby(targetUserInfo);
         //UserMaster targetUserMaster = new UserMaster();
         UserMaster targetUserMaster = userDao.getTargetUserData();
 /*        
@@ -189,11 +189,12 @@ public class PerformanceService {
         targetUserMaster.setHobby5(targetUserHobby.getHobby5());
 */        
         // DBから検索する
-        List<UserInfo> userInfoList = userDao.searchUserInfo();
-        List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
+        //List<UserInfo> userInfoList = userDao.searchUserInfo();
+        //List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
         
-        List<UserMaster> userMasterList = new ArrayList<UserMaster>();
+        List<UserMaster> userMasterList = userDao.searchUserMaster();
         
+        /*
         for(int i = 0; i < userInfoList.size(); i++) {
             UserMaster userMaster = new UserMaster();
             userMaster.setId(userInfoList.get(i).getId());
@@ -214,6 +215,7 @@ public class PerformanceService {
             }
             userMasterList.add(userMaster);
         }
+        */
         
         /* 一旦コメントアウト
         List<UserMaster> bloodMatchingUserList = new ArrayList<UserMaster>();

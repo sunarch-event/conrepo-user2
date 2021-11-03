@@ -88,6 +88,18 @@ public class UserDao {
         RowMapper<UserHobby> mapper = new BeanPropertyRowMapper<UserHobby>(UserHobby.class);
         return jdbcTemplate.query(sql, mapper);
     }
+
+    public List<UserMaster> searchUserMaster() {
+        String sql = "SELECT info.id id, info.last_name last_name, info.first_name first_name, info.prefectures prefectures, info.city city, info.blood_type blood_type, ";
+        sql = sql + "hobby.hobby1 hobby1, hobby.hobby2 hobby2, hobby.hobby3 hobby3, hobby.hobby4 hobby4, hobby.hobby5 hobby5 ";
+        sql = sql + "FROM user_info info, user_hobby hobby ";
+        sql = sql + "WHERE info.id = hobby.id ";
+        sql = sql + "AND (last_name <> " + "'試験' ";
+        sql = sql + "OR first_name <> " + "'太郎')"; 
+        sql = sql + " ORDER BY id";
+        RowMapper<UserMaster> mapper = new BeanPropertyRowMapper<UserMaster>(UserMaster.class);
+        return jdbcTemplate.query(sql, mapper);
+    }
     
     public UserInfo getTargetUserInfo() {
         String sql = "SELECT id, last_name, first_name, prefectures, city, blood_type ";
