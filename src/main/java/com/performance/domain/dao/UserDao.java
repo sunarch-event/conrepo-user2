@@ -12,8 +12,13 @@ import com.performance.domain.entity.UserHobby;
 import com.performance.domain.entity.UserInfo;
 import com.performance.domain.entity.UserMaster;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @Repository
 public class UserDao {
+
+    final static Logger log = LogManager.getLogger(UserDao.class);
 
     private JdbcTemplate jdbcTemplate;
     
@@ -113,8 +118,9 @@ public class UserDao {
             RowMapper<UserMaster> mapper = new BeanPropertyRowMapper<UserMaster>(UserMaster.class);
             targetUserMaster = jdbcTemplate.queryForObject(sql, mapper);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage(), e);
         }
+        log.error("取得データ：" + targetUserMaster);
         return targetUserMaster;
         //RowMapper<UserMaster> mapper = new BeanPropertyRowMapper<UserMaster>(UserMaster.class);
         //return jdbcTemplate.queryForObject(sql, mapper);
