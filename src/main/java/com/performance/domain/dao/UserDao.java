@@ -109,7 +109,7 @@ public class UserDao {
     public UserMaster getTargetUserData() {
         UserMaster targetUserMaster = new UserMaster();
         String sql = "SELECT info.id id, info.last_name last_name, info.first_name first_name, info.prefectures prefectures, info.city city, info.blood_type blood_type, ";
-        sql = sql + "hobby.hobby1 hobby1, hobby.hobby2 hobby2, hobby.hobby3 hobby3, hobby.hobby4 hobby4, hobby.hobby5 hobby5";
+        sql = sql + "hobby.hobby1 hobby1, hobby.hobby2 hobby2, hobby.hobby3 hobby3, hobby.hobby4 hobby4, hobby.hobby5 hobby5 ";
         sql = sql + "FROM user_info info, user_hobby hobby ";
         sql = sql + "WHERE info.id = hobby.id";
         sql = sql + "AND info.last_name = " + "'試験'";
@@ -120,7 +120,7 @@ public class UserDao {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        log.error("取得データ：" + targetUserMaster);
+        log.info("取得データ：" + targetUserMaster);
         return targetUserMaster;
         //RowMapper<UserMaster> mapper = new BeanPropertyRowMapper<UserMaster>(UserMaster.class);
         //return jdbcTemplate.queryForObject(sql, mapper);
