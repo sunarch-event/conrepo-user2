@@ -116,10 +116,12 @@ public class PerformanceService {
 
         try {
             int i = 0;
+            // CSV分割用
+            Pattern csvPtn = Pattern.compile(",");
             for(String line : csvFile) {
                 //カンマで分割した内容を配列に格納する
-                String[] data = line.split(",", -1);
-                
+                //String[] data = line.split(",", -1);
+                String[] data = csvPtn.split(line, -1);
                 //データ内容をコンソールに表示する
                 log.info("-------------------------------");
                 //データ件数を表示
