@@ -154,8 +154,9 @@ public class PerformanceService {
                     // 行数のインクリメント
                     i++;
                     log.info("データ書き込み" + i + "件目");
-                    userDao.insertUserInfo(userInfo);
-                    Long id = userDao.selectId(userInfo);
+                    //userDao.insertUserInfo(userInfo);
+                    //Long id = userDao.selectId(userInfo);
+                    Long id = userDao.insertUserInfo(userInfo);
                     userHobby.setId(id);
                     userDao.insertUserHobby(userHobby);
                 }
