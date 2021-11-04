@@ -2,7 +2,9 @@ package com.performance.domain.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +86,10 @@ public class PerformanceService {
 
             //読み込みファイルのインスタンス生成
             //ファイル名を指定する
-            fr = new FileReader(new File("data/userInfo.csv"));
-            br = new BufferedReader(fr);
+            //fr = new FileReader(new File("data/userInfo.csv"));
+            FileInputStream fIStream= new FileInputStream("data/userInfo.csv");
+            InputStreamReader iSReader = new InputStreamReader(fIStream);
+            br = new BufferedReader(iSReader);
             
 
             //読み込み行
