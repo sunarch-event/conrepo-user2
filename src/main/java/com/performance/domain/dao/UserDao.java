@@ -60,7 +60,9 @@ public class UserDao {
     public List<UserInfo> searchUserInfo() {
         String sql = "SELECT id, last_name, first_name, prefectures, city, blood_type ";
         sql = sql + "FROM user_info ";
-        sql = sql + "WHERE last_name || first_name <> " + "'試験太郎'";
+        //sql = sql + "WHERE last_name || first_name <> " + "'試験太郎'";
+        sql = sql + "WHERE last_name <> " + "'試験'";
+        sql = sql + " OR first_name <> " + "'太郎'";
         sql = sql + " ORDER BY id";
         RowMapper<UserInfo> mapper = new BeanPropertyRowMapper<UserInfo>(UserInfo.class);
         return jdbcTemplate.query(sql, mapper);
