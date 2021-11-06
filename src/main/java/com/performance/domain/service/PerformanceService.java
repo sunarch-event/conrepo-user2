@@ -2,7 +2,9 @@ package com.performance.domain.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +86,10 @@ public class PerformanceService {
 
             //読み込みファイルのインスタンス生成
             //ファイル名を指定する
-            fr = new FileReader(new File("data/userInfo.csv"));
-            br = new BufferedReader(fr);
+            //fr = new FileReader(new File("data/userInfo.csv"));
+            FileInputStream fIStream= new FileInputStream("data/userInfo.csv");
+            InputStreamReader iSReader = new InputStreamReader(fIStream);
+            br = new BufferedReader(iSReader);
             
 
             //読み込み行
@@ -116,10 +120,12 @@ public class PerformanceService {
 
         try {
             int i = 0;
+            // CSV分割用
+            Pattern csvPtn = Pattern.compile(",");
             for(String line : csvFile) {
                 //カンマで分割した内容を配列に格納する
-                String[] data = line.split(",", -1);
-                
+                //String[] data = line.split(",", -1);
+                String[] data = csvPtn.split(line, -1);
                 //データ内容をコンソールに表示する
                 log.info("-------------------------------");
                 //データ件数を表示
