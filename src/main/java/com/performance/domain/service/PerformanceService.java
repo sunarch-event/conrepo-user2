@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -275,6 +276,14 @@ public class PerformanceService {
         */
         List<UserMaster> matchingUserList = new ArrayList<UserMaster>();
 
+        // 
+        HashSet<String> targetHobbySet = new HashSet<String>();
+        targetHobbySet.add(targetUserMaster.getHobby1());
+        targetHobbySet.add(targetUserMaster.getHobby2());
+        targetHobbySet.add(targetUserMaster.getHobby3());
+        targetHobbySet.add(targetUserMaster.getHobby4());
+        targetHobbySet.add(targetUserMaster.getHobby5());
+/*
         for(UserMaster user : userMasterList) {
             // 同じ血液型ユーザー
             if(user.getBloodType().equals(targetUserMaster.getBloodType())) {
@@ -300,6 +309,37 @@ public class PerformanceService {
                 }
                 // 趣味5に同じ趣味を持っているユーザー
                 if(user.getHobby5().equals(targetUserMaster.getHobby1()) || user.getHobby5().equals(targetUserMaster.getHobby2()) || user.getHobby5().equals(targetUserMaster.getHobby3()) || user.getHobby5().equals(targetUserMaster.getHobby4()) || user.getHobby5().equals(targetUserMaster.getHobby5())) {
+                    matchingUserList.add(user);
+                    continue;
+                }
+            }
+        }
+*/
+        for(UserMaster user : userMasterList) {
+            // 同じ血液型ユーザー
+            if(user.getBloodType().equals(targetUserMaster.getBloodType())) {
+                // 趣味1に同じ趣味を持っているユーザー
+                if(targetHobbySet.contains(user.getHobby1())) {
+                    matchingUserList.add(user);
+                    continue;
+                }
+                // 趣味2に同じ趣味を持っているユーザー
+                if(targetHobbySet.contains(user.getHobby2())) {
+                    matchingUserList.add(user);
+                    continue;
+                }
+                // 趣味3に同じ趣味を持っているユーザー
+                if(targetHobbySet.contains(user.getHobby3())) {
+                    matchingUserList.add(user);
+                    continue;
+                }
+                // 趣味4に同じ趣味を持っているユーザー
+                if(targetHobbySet.contains(user.getHobby4())) {
+                    matchingUserList.add(user);
+                    continue;
+                }
+                // 趣味5に同じ趣味を持っているユーザー
+                if(targetHobbySet.contains(user.getHobby5())) {
                     matchingUserList.add(user);
                     continue;
                 }
