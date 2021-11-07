@@ -313,7 +313,7 @@ public class PerformanceService {
             //ファイル名を指定する
             
             // CSV読み込み処理の修正
-            FileInputStream fIStream= new FileInputStream("data/userInfo.csv");
+            FileInputStream fIStream= new FileInputStream("data/assertionData.csv");
             InputStreamReader iSReader = new InputStreamReader(fIStream);
             br = new BufferedReader(iSReader);
 
