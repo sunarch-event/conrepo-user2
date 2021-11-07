@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import com.performance.domain.dao.UserDao;
 import com.performance.domain.entity.UserHobby;
@@ -154,9 +155,10 @@ public class PerformanceService {
                 userHobby.setHobby4(data[8]);
                 userHobby.setHobby5(data[9]);
                 // 特定の件のみインサートするようにする
-                Pattern pattern = Pattern.compile(".新潟県,上越市.");
-                Matcher matcher = pattern.matcher(line);
-                if(matcher.find()) {
+                //Pattern pattern = Pattern.compile(".新潟県,上越市.");
+                //Matcher matcher = pattern.matcher(line);
+                //if(matcher.find()) {
+                if(StringUtils.equals(data[2], "新潟県") && StringUtils.equals(data[3], "上越市")) {
                     // 行数のインクリメント
                     i++;
                     log.info("データ書き込み" + i + "件目");
