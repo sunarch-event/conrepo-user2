@@ -144,23 +144,25 @@ public class PerformanceService {
                 UserInfo userInfo = new UserInfo();
                 UserHobby userHobby = new UserHobby();
 
-                userInfo.setLastName(data[0]);
-                userInfo.setFirstName(data[1]);
-                userInfo.setPrefectures(data[2]);
-                userInfo.setCity(data[3]);
-                userInfo.setBloodType(data[4]);
-                userHobby.setHobby1(data[5]);
-                userHobby.setHobby2(data[6]);
-                userHobby.setHobby3(data[7]);
-                userHobby.setHobby4(data[8]);
-                userHobby.setHobby5(data[9]);
                 // 特定の件のみインサートするようにする
-                //Pattern pattern = Pattern.compile(".新潟県,上越市.");
-                //Matcher matcher = pattern.matcher(line);
-                //if(matcher.find()) {
-                if(StringUtils.equals(data[2], "新潟県") && StringUtils.equals(data[3], "上越市")) {
+                Pattern pattern = Pattern.compile(".新潟県,上越市.");
+                Matcher matcher = pattern.matcher(line);
+                if(matcher.find()) {
                     // 行数のインクリメント
                     i++;
+                    
+                    // インサートする場合のみ、値をセットする
+                    userInfo.setLastName(data[0]);
+                    userInfo.setFirstName(data[1]);
+                    userInfo.setPrefectures(data[2]);
+                    userInfo.setCity(data[3]);
+                    userInfo.setBloodType(data[4]);
+                    userHobby.setHobby1(data[5]);
+                    userHobby.setHobby2(data[6]);
+                    userHobby.setHobby3(data[7]);
+                    userHobby.setHobby4(data[8]);
+                    userHobby.setHobby5(data[9]);
+
                     log.info("データ書き込み" + i + "件目");
                     //userDao.insertUserInfo(userInfo);
                     //Long id = userDao.selectId(userInfo);
