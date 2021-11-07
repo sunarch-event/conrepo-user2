@@ -1,9 +1,7 @@
 package com.performance.domain.service;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
 import com.performance.domain.dao.UserDao;
 import com.performance.domain.entity.UserHobby;
@@ -81,14 +78,14 @@ public class PerformanceService {
         
         // CSVを取得・CSVファイルをDBに登録する
         //ファイル読み込みで使用する3つのクラス
-        FileReader fr = null;
         BufferedReader br = null;
         List<String> csvFile = new ArrayList<String>();
         try {
 
             //読み込みファイルのインスタンス生成
             //ファイル名を指定する
-            //fr = new FileReader(new File("data/userInfo.csv"));
+
+            // ファイル読み込み方式を修正
             FileInputStream fIStream= new FileInputStream("data/userInfo.csv");
             InputStreamReader iSReader = new InputStreamReader(fIStream);
             br = new BufferedReader(iSReader);
@@ -126,7 +123,6 @@ public class PerformanceService {
             Pattern csvPtn = Pattern.compile(",");
             for(String line : csvFile) {
                 //カンマで分割した内容を配列に格納する
-                //String[] data = line.split(",", -1);
                 String[] data = csvPtn.split(line, -1);
                 //データ内容をコンソールに表示する
                 log.info("-------------------------------");
@@ -165,8 +161,8 @@ public class PerformanceService {
                     userHobby.setHobby5(data[9]);
 
                     log.info("データ書き込み" + i + "件目");
-                    //userDao.insertUserInfo(userInfo);
-                    //Long id = userDao.selectId(userInfo);
+
+                    // DB登録時にidを取得するよう修正
                     Long id = userDao.insertUserInfo(userInfo);
                     userHobby.setId(id);
                     userDao.insertUserHobby(userHobby);
@@ -309,15 +305,17 @@ public class PerformanceService {
         
         // CSVを取得・CSVファイルをDBに登録する
         //ファイル読み込みで使用する3つのクラス
-        FileReader fr = null;
         BufferedReader br = null;
         List<String> csvFile = new ArrayList<String>();
         try {
 
             //読み込みファイルのインスタンス生成
             //ファイル名を指定する
-            fr = new FileReader(new File("data/assertionData.csv"));
-            br = new BufferedReader(fr);
+            
+            // CSV読み込み処理の修正
+            FileInputStream fIStream= new FileInputStream("data/userInfo.csv");
+            InputStreamReader iSReader = new InputStreamReader(fIStream);
+            br = new BufferedReader(iSReader);
 
             //読み込み行
             String readLine;
