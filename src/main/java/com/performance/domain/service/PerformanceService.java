@@ -276,14 +276,14 @@ public class PerformanceService {
         */
         List<UserMaster> matchingUserList = new ArrayList<UserMaster>();
 
-/*        // 
+        // 
         HashSet<String> targetHobbySet = new HashSet<String>();
         targetHobbySet.add(targetUserMaster.getHobby1());
         targetHobbySet.add(targetUserMaster.getHobby2());
         targetHobbySet.add(targetUserMaster.getHobby3());
         targetHobbySet.add(targetUserMaster.getHobby4());
         targetHobbySet.add(targetUserMaster.getHobby5());
-*/
+/*
         for(UserMaster user : userMasterList) {
             // 同じ血液型ユーザー
             if(user.getBloodType().equals(targetUserMaster.getBloodType())) {
@@ -314,7 +314,7 @@ public class PerformanceService {
                 }
             }
         }
-/*
+*/
         for(UserMaster user : userMasterList) {
             // 同じ血液型ユーザー
             if(user.getBloodType().equals(targetUserMaster.getBloodType())) {
@@ -345,7 +345,6 @@ public class PerformanceService {
                 }
             }
         }
-*/
         return matchingUserList;
     }
 
