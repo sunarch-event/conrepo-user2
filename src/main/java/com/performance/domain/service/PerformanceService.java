@@ -141,8 +141,6 @@ public class PerformanceService {
                 log.debug("趣味3:" + data[7]);
                 log.debug("趣味4:" + data[8]);
                 log.debug("趣味5:" + data[9]);
-                UserInfo userInfo = new UserInfo();
-                UserHobby userHobby = new UserHobby();
 
                 // 特定の件のみインサートするようにする
                 Pattern pattern = Pattern.compile(".新潟県,上越市.");
@@ -152,6 +150,8 @@ public class PerformanceService {
                     i++;
                     
                     // インサートする場合のみ、値をセットする
+                    UserInfo userInfo = new UserInfo();
+                    UserHobby userHobby = new UserHobby();
                     userInfo.setLastName(data[0]);
                     userInfo.setFirstName(data[1]);
                     userInfo.setPrefectures(data[2]);
@@ -197,8 +197,12 @@ public class PerformanceService {
         List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
         
         List<UserMaster> userMasterList = new ArrayList<UserMaster>();
+
+        // それぞれのリストサイズを事前に取得
+        int infoListSize = userInfoList.size();
+        int hobbyListSize = userHobbyList.size();
         
-        for(int i = 0; i < userInfoList.size(); i++) {
+        for(int i = 0; i < infoListSize; i++) {
             UserMaster userMaster = new UserMaster();
             userMaster.setId(userInfoList.get(i).getId());
             userMaster.setLastName(userInfoList.get(i).getLastName());
@@ -206,7 +210,7 @@ public class PerformanceService {
             userMaster.setPrefectures(userInfoList.get(i).getPrefectures());
             userMaster.setCity(userInfoList.get(i).getCity());
             userMaster.setBloodType(userInfoList.get(i).getBloodType());
-            for(int j = 0; j < userHobbyList.size(); j++) {
+            for(int j = 0; j < hobbyListSize; j++) {
                 if(userMaster.getId().equals(userHobbyList.get(j).getId())) {
                     userMaster.setHobby1(userHobbyList.get(j).getHobby1());
                     userMaster.setHobby2(userHobbyList.get(j).getHobby2());
