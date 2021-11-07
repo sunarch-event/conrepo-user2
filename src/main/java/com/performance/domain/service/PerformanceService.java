@@ -189,12 +189,12 @@ public class PerformanceService {
         targetUserMaster.setHobby5(targetUserHobby.getHobby5());
         
         // DBから検索する
-        //List<UserInfo> userInfoList = userDao.searchUserInfo(targetUserInfo.getId());
-        //List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
+        List<UserInfo> userInfoList = userDao.searchUserInfo(targetUserInfo.getId());
+        List<UserHobby> userHobbyList = userDao.searchUserHobby(targetUserHobby);
         
-        //List<UserMaster> userMasterList = new ArrayList<UserMaster>();
-        List<UserMaster> userMasterList = userDao.searchUserMaster(targetUserInfo.getId());
-/*        
+        List<UserMaster> userMasterList = new ArrayList<UserMaster>();
+        //List<UserMaster> userMasterList = userDao.searchUserMaster(targetUserInfo.getId());
+        
         for(int i = 0; i < userInfoList.size(); i++) {
             UserMaster userMaster = new UserMaster();
             userMaster.setId(userInfoList.get(i).getId());
@@ -215,7 +215,7 @@ public class PerformanceService {
             }
             userMasterList.add(userMaster);
         }
-*/
+
         
         /* 一旦コメントアウト
         List<UserMaster> bloodMatchingUserList = new ArrayList<UserMaster>();
